@@ -19,15 +19,14 @@ jobs:
         uses: manoelcampos/asciidoctor-ghpages-action@v2
         with:
           pre_build: |
-            mv "$INPUT_SOURCE_DIR" /tmp/source
-            mv "helm" /tmp/source/
+            mv "docs/" /tmp/source
+            mv "helm" /tmp/source/helm
             #Ignores directories . and .git
             find . -not -path './.git*' -not -name '.' -exec rm -rf {} \; || true
             mv /tmp/source/* .
             git add .
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
-          source_dir: docs/ # default is .
           post_build: 'find . -name "*.svg" | xargs git add -f'
 
       - name: Configure Git
