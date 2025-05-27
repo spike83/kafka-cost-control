@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # important parameter
 
       - name: asciidoctor-ghpages
         uses: manoelcampos/asciidoctor-ghpages-action@v2
@@ -29,7 +26,7 @@ jobs:
             git add .
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
-          post_build: 'find . -name "*.svg" | xargs git add -f; ls .'
+          post_build: 'find . -name "*.svg" | xargs git add -f; ls -al; id'
 
       - name: Configure Git
         run: |
