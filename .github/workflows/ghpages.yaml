@@ -15,21 +15,24 @@ jobs:
         with:
           fetch-depth: 0 # important parameter
 
-      # - name: asciidoctor-ghpages
-      #   uses: manoelcampos/asciidoctor-ghpages-action@v2
-      #   with:
-      #     pre_build: |
-      #       mv "docs/" /tmp/source
-      #       mv "helm" /tmp/source/
-      #       #Ignores directories . and .git
-      #       find . -not -path './.git*' -not -name '.' -exec rm -rf {} \; || true
-      #       mv /tmp/source/* .
-      #       chown -R root:root .
-      #       chmod -R 777 .
-      #       git add .
-      #     pdf_build: true
-      #     asciidoctor_params: -r asciidoctor-diagram
-      #     post_build: 'find . -name "*.svg" | xargs git add -f; ls -al .'
+      - name: asciidoctor-ghpages
+        uses: manoelcampos/asciidoctor-ghpages-action@v2
+        with:
+          pre_build: |
+            mv "docs/" /tmp/source
+            mv "helm" /tmp/source/
+            #Ignores directories . and .git
+            find . -not -path './.git*' -not -name '.' -exec rm -rf {} \; || true
+            mv /tmp/source/* .
+            chown -R root:root .
+            chmod -R 777 .
+            git add .
+          pdf_build: true
+          asciidoctor_params: -r asciidoctor-diagram
+          post_build: 'find . -name "*.svg" | xargs git add -f; ls -al .'
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # important parameter
 
       - name: Configure Git
         run: |
