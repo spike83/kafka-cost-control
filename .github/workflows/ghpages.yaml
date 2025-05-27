@@ -18,6 +18,7 @@ jobs:
       - name: asciidoctor-ghpages
         uses: manoelcampos/asciidoctor-ghpages-action@v2
         with:
+          pre_build: 'cp -R helm docs/'
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
           source_dir: docs/ # default is .
