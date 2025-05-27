@@ -29,7 +29,13 @@ jobs:
             git add .
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
-          post_build: 'find . -name "*.svg" | xargs git add -f; ls -al .'
+          post_build: 'find . -name "*.svg" | xargs git add -f'
+  publish:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # important parameter
