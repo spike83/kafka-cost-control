@@ -25,6 +25,7 @@ jobs:
             find . -not -path './.git*' -not -name '.' -exec rm -rf {} \; || true
             mv /tmp/source/* .
             chown -R root:root .
+            chmod -R 777 .
             git add .
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
