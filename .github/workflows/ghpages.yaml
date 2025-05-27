@@ -28,7 +28,7 @@ jobs:
           pdf_build: true
           asciidoctor_params: -r asciidoctor-diagram
           source_dir: docs/ # default is .
-          post_build: 'cp -R helm docs/; find . -name "*.svg" | xargs git add -f'
+          post_build: 'find . -name "*.svg" | xargs git add -f'
 
       - name: Configure Git
         run: |
