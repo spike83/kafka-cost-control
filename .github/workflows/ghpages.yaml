@@ -3,7 +3,7 @@ name: GitHub Pages + Helm Publish
 on:
   push:
     branches: [ master ]
-
+  workflow_dispatch: {}
 jobs:
   build:
     permissions:
